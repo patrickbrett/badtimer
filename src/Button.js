@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Button extends Component {
   render() {
     const { name, onClick, text } = this.props;
     return (
-      <button className="button" id={'button-' + name} onClick={onClick}>{text}</button>
+      <button className="button" id={"button-" + name} onClick={onClick}>
+        {text}
+      </button>
     );
   }
 }

@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Timer extends Component {
-  
   render() {
     let { time, maxTime, skew, active } = this.props;
 
@@ -16,9 +15,11 @@ class Timer extends Component {
     distortion = 1 - skew/100 * 0.4
      */
 
-    const distortion = 1 - skew/100 * 0.4;
+    const distortion = 1 - (skew / 100) * 0.4;
 
-    let modifiedTime = Math.ceil(Math.pow(time / maxTime, distortion) * maxTime);
+    let modifiedTime = Math.ceil(
+      Math.pow(time / maxTime, distortion) * maxTime
+    );
     if (isNaN(modifiedTime) || time < 0) {
       modifiedTime = 0;
       finished = true;
@@ -32,12 +33,16 @@ class Timer extends Component {
     const minutes = prependZero(Math.floor((modifiedTime % 3600) / 60));
     const seconds = prependZero(Math.floor(modifiedTime % 60));
 
-    const timeDisplay = <div id="time-display">{hours}:{minutes}:{seconds}</div>;
+    const timeDisplay = (
+      <div id="time-display">
+        {hours}:{minutes}:{seconds}
+      </div>
+    );
 
     return (
-      <div id="timer" className={active ? "large" : ""} >
-          {finished ? "Timer done" : timeDisplay}
-          {this.props.children}
+      <div id="timer" className={active ? "large" : ""}>
+        {finished ? "Timer done" : timeDisplay}
+        {this.props.children}
       </div>
     );
   }
