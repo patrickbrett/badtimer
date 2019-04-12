@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Timer from "./Timer";
 import Button from "./Button";
+import Info from "./About";
 
 class App extends Component {
   constructor(props) {
@@ -50,7 +51,7 @@ class App extends Component {
       };
 
       this.editTimer = () => {
-          let { maxTime, active } = this.state;
+          let { maxTime } = this.state;
 
           this.setState({ active: false, time: maxTime, initialised: false });
       };
@@ -133,23 +134,12 @@ class App extends Component {
         { initialised ? timer : timerSetup }
     </div>;
 
-      const containerInfo = <div id="container-info">
-        <div>
-            <div>
-              <h1>BadTimer</h1>
-            </div>
-            <div id="info-text">
-                <p>Because most timers don't speed up enough.</p>
-                <p>&copy; 2019 <a href="https://patrickbrett.net" target="_BLANK">Patrick Brett</a></p>
-                <p><a href="https://github.com/patrickbrett/badtimer" target="_BLANK">View source on Github</a></p>
-            </div>
-        </div>
-      </div>;
+      const containerInfo = <Info />;
 
     return (
       <div id="App">
         { isShowingInfo ? containerInfo : containerTimer }
-        <div id="info-button" onClick={this.toggleShowInfo}>About</div>
+        <div id="about-button" onClick={this.toggleShowInfo}>About</div>
       </div>
     );
   }
