@@ -123,3 +123,29 @@ body {
   color: #000;
   font-weight: bold;
 }
+
+#timer-done {
+  height: 100px;
+  color: #f4424b;
+  font-weight: bold;
+  color: #f4424b;
+  text-transform: uppercase;
+  animation: 2s timer-done-animation infinite;
+}
+
+@keyframes timer-done-animation {
+  0% {
+    transform: scale(1.8);
+    opacity: 0.2;
+  }
+
+  50% {
+    transform: scale(2);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.8);
+    opacity: 0.2;
+  }
+}

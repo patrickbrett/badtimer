@@ -157,13 +157,22 @@ class App extends Component {
       </div>
     );
 
-    const buttonsContainer = (
-      <div id="container-buttons">
-        {active ? pauseButton : startButton}
-        {active ? stopButton : time === maxTime ? editButton : resetButton}
-        {active ? null : skewSlider}
-      </div>
-    );
+    let buttonsContainer;
+    if (time > 0) {
+      buttonsContainer = (
+          <div id="container-buttons">
+            {active ? pauseButton : startButton}
+            {active ? stopButton : time === maxTime ? editButton : resetButton}
+            {active ? null : skewSlider}
+          </div>
+      );
+    } else {
+      buttonsContainer = (
+          <div id="container-buttons">
+            {resetButton}
+          </div>
+      );
+    }
 
     const timer = (
       <Timer
