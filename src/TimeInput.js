@@ -15,15 +15,15 @@ var __extends = (this && this.__extends) || (function () {
 exports.__esModule = true;
 var React = require("react");
 var react_1 = require("react");
-var Button = /** @class */ (function (_super) {
-    __extends(Button, _super);
-    function Button() {
+var TimeInput = /** @class */ (function (_super) {
+    __extends(TimeInput, _super);
+    function TimeInput() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    Button.prototype.render = function () {
-        var _a = this.props, name = _a.name, onClick = _a.onClick, text = _a.text;
-        return (React.createElement("button", { className: "button", id: "button-" + name, onClick: onClick }, text));
+    TimeInput.prototype.render = function () {
+        var _a = this.props, name = _a.name, checkSubmit = _a.checkSubmit, updateField = _a.updateField, setup = _a.setup;
+        return (React.createElement("input", { className: "time-input", type: "text", onChange: function (e) { return updateField(e, name); }, onKeyPress: checkSubmit, value: setup[name] }));
     };
-    return Button;
+    return TimeInput;
 }(react_1.Component));
-exports["default"] = Button;
+exports["default"] = TimeInput;

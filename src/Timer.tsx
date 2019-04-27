@@ -1,11 +1,14 @@
-import React, { Component } from "react";
+import * as React from "react";
 import TimerDone from "./TimerDone";
+import {Component} from "react";
 
 class Timer extends Component {
-  render() {
-    let { time, maxTime, skew, active } = this.props;
+  props: any;
 
-    let finished = false;
+  render() {
+    let { time, maxTime, skew, active }: { time: number, maxTime: number, skew: number, active: boolean } = this.props;
+
+    let finished: boolean = false;
 
     /*
     skew to distortion
@@ -16,23 +19,22 @@ class Timer extends Component {
     distortion = 1 - skew/100 * 0.4
      */
 
-    const distortion = 1 - (skew / 100) * 0.4;
+    const distortion: number = 1 - (skew / 100) * 0.4;
 
-    let modifiedTime = Math.ceil(
+    let modifiedTime: number = Math.ceil(
       Math.pow(time / maxTime, distortion) * maxTime
     );
+
     if (isNaN(modifiedTime) || time < 0) {
       modifiedTime = 0;
       finished = true;
     }
 
-    let prependZero = num => {
-      return num < 10 ? "0" + num : num;
-    };
+    let prependZero = (num: number) => num < 10 ? "0" + String(num) : String(num);
 
-    const hours = Math.floor(modifiedTime / 3600);
-    const minutes = prependZero(Math.floor((modifiedTime % 3600) / 60));
-    const seconds = prependZero(Math.floor(modifiedTime % 60));
+    const hours: string = String(Math.floor(modifiedTime / 3600));
+    const minutes: string = prependZero(Math.floor((modifiedTime % 3600) / 60));
+    const seconds: string = prependZero(Math.floor(modifiedTime % 60));
 
     const timeDisplay = (
       <div id="time-display">
