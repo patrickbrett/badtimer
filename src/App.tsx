@@ -1,9 +1,8 @@
-import * as React from "react";
+import React, { Component } from "react";
 import "./App.css";
 import Timer from "./Timer";
 import Button from "./Button";
-import Info from "./About";
-import {Component, ReactElement} from "react";
+import About from "./About";
 import TimeInput from "./TimeInput";
 
 interface Props {}
@@ -27,17 +26,8 @@ interface Setup {
 type field = "hours" | "minutes" | "seconds";
 
 class App extends Component<Props, State> {
-  private readonly tick: TimerHandler;
-  private readonly startTimer: () => void;
-  private readonly pauseTimer: () => void;
-  private readonly stopTimer: () => void;
-  private readonly editTimer: () => void;
-  private readonly updateSkew: (e) => void;
-  private readonly updateField: (e, field: field) => void;
-  private readonly checkSubmit: (e) => void;
-  private readonly finishInitialise: () => void;
-  private readonly toggleShowInfo: () => void;
-  
+  private readonly REFRESH_RATE: number = 100;
+
   constructor(props) {
     super(props);
 
@@ -46,7 +36,7 @@ class App extends Component<Props, State> {
       minutes: "05",
       seconds: "00"
     };
-    const REFRESH_RATE = 100; // times per second
+
     const SKEW_INIT = 50;
 
     this.state = {
@@ -58,97 +48,97 @@ class App extends Component<Props, State> {
       setup: TIME_DISPLAY_DEFAULT,
       isShowingInfo: false
     };
-
-    this.componentDidMount = () => {
-      setInterval(this.tick, 1000 / REFRESH_RATE);
-    };
-
-    this.tick = () => {
-      this.setState(prevState => {
-        let { time, active }: { time: number, active: boolean } = prevState;
-
-        if (active && time > 0) {
-          time -= 1 / REFRESH_RATE;
-        }
-
-        return { time };
-      });
-    };
-
-    this.startTimer = () => {
-      this.setState({ active: true });
-    };
-
-    this.pauseTimer = () => {
-      this.setState({ active: false });
-    };
-
-    this.stopTimer = () => {
-      let { maxTime } = this.state;
-
-      this.setState({ active: false, time: maxTime });
-    };
-
-    this.editTimer = () => {
-      let { maxTime } = this.state;
-
-      this.setState({ active: false, time: maxTime, initialised: false });
-    };
-
-    this.updateSkew = e => {
-      const { value } = e.target;
-      this.setState({ skew: value });
-    };
-
-    this.updateField = (e, field) => {
-      let { value } = e.target;
-
-      if (value.match(/\d+/)) {
-        value = value
-          .match(/\d+/)
-          .join("")
-          .slice(0, 2);
-      } else {
-        value = "";
-      }
-
-      this.setState(prevState => {
-        const { setup } = prevState;
-
-        setup[field] = value;
-
-        return { setup };
-      });
-    };
-
-    this.checkSubmit = e => {
-      if (e.key === "Enter") {
-        this.finishInitialise();
-      }
-    };
-
-    this.finishInitialise = () => {
-      const { setup } = this.state;
-
-      const time: number = Number(setup.hours) * 3600 + Number(setup.minutes) * 60 + Number(setup.seconds);
-
-      if (time <= 0) {
-        this.setState({
-          setup: {
-            hours: "0",
-            minutes: "05",
-            seconds: "00"
-          }
-        });
-      } else {
-        this.setState({ time, maxTime: time, initialised: true });
-      }
-    };
-
-    this.toggleShowInfo = () => {
-      this.setState(prevState => ({ isShowingInfo: !prevState.isShowingInfo }));
-    };
   }
+
+  componentDidMount = () => {
+    setInterval(this.tick, 1000 / this.REFRESH_RATE);
+  };
+
+  private readonly tick: TimerHandler = () => {
+    this.setState(prevState => {
+      let { time, active }: { time: number, active: boolean } = prevState;
+
+      if (active && time > 0) {
+        time -= 1 / this.REFRESH_RATE;
+      }
+
+      return { time };
+    });
+  };
+
+  private readonly startTimer: () => void = () => {
+    this.setState({ active: true });
+  };
+
+  private readonly pauseTimer : () => void = () => {
+    this.setState({ active: false });
+  };
+
+  private readonly stopTimer: () => void = () => {
+    let { maxTime } = this.state;
+
+    this.setState({ active: false, time: maxTime });
+  };
+
+  private readonly editTimer: () => void = () => {
+    let { maxTime } = this.state;
+
+    this.setState({ active: false, time: maxTime, initialised: false });
+  };
+
+  private readonly updateSkew: (e) => void = e => {
+    const { value } = e.target;
+    this.setState({ skew: value });
+  };
+
+  private readonly updateField: (e, field: field) => void = (e, field) => {
+    let { value } = e.target;
+
+    if (value.match(/\d+/)) {
+      value = value
+        .match(/\d+/)
+        .join("")
+        .slice(0, 2);
+    } else {
+      value = "";
+    }
+
+    this.setState(prevState => {
+      const { setup } = prevState;
+
+      setup[field] = value;
+
+      return { setup };
+    });
+  };
+
+  private readonly checkSubmit: (e) => void = e => {
+    if (e.key === "Enter") {
+      this.finishInitialise();
+    }
+  };
+
+  private readonly finishInitialise: () => void = () => {
+    const { setup } = this.state;
+
+    const time: number = Number(setup.hours) * 3600 + Number(setup.minutes) * 60 + Number(setup.seconds);
+
+    if (time <= 0) {
+      this.setState({
+        setup: {
+          hours: "0",
+          minutes: "05",
+          seconds: "00"
+        }
+      });
+    } else {
+      this.setState({ time, maxTime: time, initialised: true });
+    }
+  };
+
+  private readonly toggleShowInfo: () => void = () => {
+    this.setState(prevState => ({ isShowingInfo: !prevState.isShowingInfo }));
+  };
 
   render() {
     const {
@@ -244,7 +234,7 @@ class App extends Component<Props, State> {
       <div id="container-timer">{initialised ? timer : timerSetup}</div>
     );
 
-    const containerInfo = <Info />;
+    const containerInfo = <About toggleShowInfo={this.toggleShowInfo} />;
 
     return (
       <div id="App">

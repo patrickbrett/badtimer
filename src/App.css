@@ -20,6 +20,38 @@ body {
   text-align: center;
   font-size: 48px;
   width: auto;
+  animation: fadeIn 0.5s ease-out, shrinkIn 0.5s ease-out;
+}
+
+#timer-setup {
+  animation: fadeIn 0.5s ease-out, growIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes shrinkIn {
+  0% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes growIn {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 #timer #time-display {
@@ -110,7 +142,7 @@ body {
   bottom: 20px;
 }
 
-#container-about {
+#containerAbout {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -128,7 +160,6 @@ body {
   height: 100px;
   color: #f4424b;
   font-weight: bold;
-  color: #f4424b;
   text-transform: uppercase;
   animation: 2s timer-done-animation infinite;
 }
@@ -148,4 +179,17 @@ body {
     transform: scale(1.8);
     opacity: 0.2;
   }
+}
+
+#containerAboutInner {
+  position: relative;
+  padding: 20px 40px;
+}
+
+#closeAbout {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  right: 0;
+  font-size: 24px;
 }

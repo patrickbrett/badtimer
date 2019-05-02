@@ -1,15 +1,25 @@
 import React, { Component } from "react";
 
-class Button extends Component {
+// @ts-ignore
+import { version } from "./package.alias.json";
+
+interface Props {
+  toggleShowInfo: () => void
+}
+
+interface State {}
+
+class Button extends Component<Props, State> {
   render() {
     return (
-      <div id="container-about">
-        <div>
+      <div id="containerAbout">
+        <div id="containerAboutInner">
           <div>
             <h1>BadTimer</h1>
           </div>
           <div id="about-text">
             <p>Because most timers don't speed up enough.</p>
+            <p>v{version}</p>
             <p>
               &copy; 2019{" "}
               <a
@@ -29,6 +39,7 @@ class Button extends Component {
                 View source on Github
               </a>
             </p>
+            <div id="closeAbout" onClick={this.props.toggleShowInfo}>X</div>
           </div>
         </div>
       </div>

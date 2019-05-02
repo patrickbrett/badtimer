@@ -1,12 +1,12 @@
 {
   "name": "badtimer",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "private": true,
   "dependencies": {
     "@babel/core": "7.2.2",
     "@babel/plugin-transform-react-jsx-source": "^7.2.0",
     "@svgr/webpack": "4.1.0",
-    "@types/react": "^16.8.13",
+    "@types/react": "^16.8.15",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "9.0.0",
     "babel-jest": "23.6.0",
@@ -48,6 +48,7 @@
     "sass-loader": "7.1.0",
     "style-loader": "0.23.1",
     "terser-webpack-plugin": "1.2.2",
+    "typescript": "^3.4.5",
     "url-loader": "1.1.2",
     "webpack": "4.28.3",
     "webpack-dev-server": "3.1.14",
@@ -58,7 +59,8 @@
     "start": "node scripts/start.js",
     "build": "tsc src/*.tsx --jsx react; node scripts/build.js",
     "test": "node scripts/test.js",
-    "format": "prettier ./src/* --write"
+    "format": "prettier ./src/* --write",
+    "go": "npm run build; npm run start"
   },
   "eslintConfig": {
     "extends": "react-app"
