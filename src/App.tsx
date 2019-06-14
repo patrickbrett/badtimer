@@ -1,4 +1,4 @@
-import React, { Component, Dispatch, SetStateAction, useEffect, useState } from 'react'
+import React, { Dispatch, SetStateAction, useState } from 'react'
 import './App.css'
 import Timer from './Timer'
 import Button from './Button'
@@ -151,10 +151,25 @@ const App = () => {
     </div>
   )
 
+  let primaryButton: JSX.Element
+  let secondaryButton: JSX.Element
+
+  if (active) {
+    primaryButton = pauseButton
+    secondaryButton = stopButton
+  } else {
+    primaryButton = startButton
+    if (commandHistory.length) {
+      secondaryButton = resetButton
+    } else {
+      secondaryButton = editButton
+    }
+  }
+
   const buttonsContainer = (
     <div id="container-buttons">
-      {active ? pauseButton : startButton}
-      {active ? stopButton : commandHistory.length ? resetButton : editButton}
+      {primaryButton}
+      {secondaryButton}
       {active ? null : skewSlider}
     </div>
   )
@@ -179,7 +194,10 @@ const App = () => {
 
   const timerSetup = (
     <div id="timer-setup">
-      {getTimeInput('hours')}:{getTimeInput('minutes')}:
+      {getTimeInput('hours')}
+      <span className="colon-separator">:</span>
+      {getTimeInput('minutes')}
+      <span className="colon-separator">:</span>
       {getTimeInput('seconds')}
       <Button name="save" text="Save" onClick={finishInitialise} />
     </div>
@@ -194,9 +212,9 @@ const App = () => {
   return (
     <div id="App">
       {isShowingInfo ? containerInfo : containerTimer}
-      <div id="about-button" onClick={toggleShowInfo}>
+      <button type="button" id="about-button" onClick={toggleShowInfo}>
         About
-      </div>
+      </button>
     </div>
   )
 }

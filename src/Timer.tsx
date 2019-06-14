@@ -29,6 +29,19 @@ class Timer extends Component<Props, State> {
     }
   }
 
+  componentDidMount = (): void => {
+    const { commandHistory } = { ...this.props }
+
+    clearInterval(this.interval)
+
+    if (
+      commandHistory.length &&
+      commandHistory[commandHistory.length - 1].commandType === 'START'
+    ) {
+      this.interval = setInterval(() => this.forceUpdate(), 100)
+    }
+  }
+
   render() {
     const { duration, commandHistory, skew, active, children }: any = this.props
 

@@ -29,31 +29,6 @@ body {
   transition: all 0.5s;
 }
 
-@media (min-width: 1200px) {
-  #timer {
-    width: 700px;
-    height: auto;
-    font-size: 60px !important;
-    padding: 80px;
-  }
-}
-
-@media (max-width: 600px) {
-  #timer {
-    width: auto;
-    height: auto;
-    font-size: 12px !important;
-  }
-
-  #button-start, #button-edit {
-    display: block;
-    margin: 0 auto;
-    font-size: 14px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-  }
-}
-
 #timer-setup {
   animation: fadeIn 0.5s ease-out, growIn 0.5s ease-out;
   background: #fff;
@@ -174,6 +149,9 @@ body {
   top: 20px;
   color: #fff;
   font-weight: bold;
+  background: none;
+  padding: 10px;
+  font-size: 18px;
 }
 
 #containerAbout {
@@ -269,4 +247,52 @@ body {
 #closeAbout:hover:before, #closeAbout:hover:after {
   transform: rotate(0deg);
   background-color: #000;
+}
+
+.colon-separator {
+  position: relative;
+  top: -6px;
+  left: -5px;
+}
+
+@media (min-width: 1200px) {
+  #timer {
+    width: 700px;
+    height: auto;
+    font-size: 60px !important;
+    padding: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  #timer {
+    width: auto;
+    height: auto;
+    font-size: 24px !important;
+  }
+
+  #button-start, #button-edit, #button-save {
+    display: block;
+    margin: 0 auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+
+  #button-save {
+    left: 10px;
+  }
+
+  .colon-separator {
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    left: 10px;
+  }
+
+  .time-input {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
 }
