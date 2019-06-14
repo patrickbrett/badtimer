@@ -56,6 +56,9 @@ body {
 
 #timer-setup {
   animation: fadeIn 0.5s ease-out, growIn 0.5s ease-out;
+  background: #fff;
+  padding: 40px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3);
 }
 
 @keyframes fadeIn {

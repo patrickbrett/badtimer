@@ -35,8 +35,8 @@ class App extends Component<Props, State> {
 
     const TIME_DISPLAY_DEFAULT = {
       hours: '0',
-      minutes: '05',
-      seconds: '00',
+      minutes: '00',
+      seconds: '20',
     }
 
     const SKEW_INIT = 50
@@ -208,12 +208,6 @@ class App extends Component<Props, State> {
       </div>
     )
 
-    // const buttonsContainer = (
-    //   <>
-    //     {pauseButton} {startButton} {stopButton} {editButton} {skewSlider} {resetButton}
-    //   </>
-    // )
-
     const timer = (
       <Timer
         duration={duration}
@@ -229,6 +223,7 @@ class App extends Component<Props, State> {
         checkSubmit={this.checkSubmit}
         setup={setup}
         updateField={this.updateField}
+        isFocused={name === 'hours'}
       />
     )
 

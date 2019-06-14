@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Component } from 'react'
 
 interface Props {
   name: string
@@ -7,18 +6,14 @@ interface Props {
   text: string
 }
 
-interface State {}
+const Button = (props: Props) => {
+  const { name, onClick, text } = props
 
-class Button extends Component<Props, State> {
-  render() {
-    const { name, onClick, text } = this.props
-
-    return (
-      <button className="button" id={'button-' + name} onClick={onClick}>
-        {text}
-      </button>
-    )
-  }
+  return (
+    <button className="button" id={'button-' + name} onClick={onClick}>
+      {text}
+    </button>
+  )
 }
 
 export default Button

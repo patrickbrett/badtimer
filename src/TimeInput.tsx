@@ -8,9 +8,8 @@ interface Props {
   checkSubmit: (e) => void
   updateField: (e, field: field) => void
   setup: Setup
+  isFocused: boolean
 }
-
-interface State {}
 
 interface Setup {
   hours: string
@@ -18,20 +17,19 @@ interface Setup {
   seconds: string
 }
 
-class TimeInput extends Component<Props, State> {
-  render() {
-    const { name, checkSubmit, updateField, setup } = this.props
+const TimeInput = (props: Props) => {
+  const { name, checkSubmit, updateField, setup, isFocused } = props
 
-    return (
-      <input
-        className="time-input"
-        type="text"
-        onChange={e => updateField(e, name)}
-        onKeyPress={checkSubmit}
-        value={setup[name]}
-      />
-    )
-  }
+  return (
+    <input
+      className="time-input"
+      type="text"
+      onChange={e => updateField(e, name)}
+      onKeyPress={checkSubmit}
+      value={setup[name]}
+      autoFocus={isFocused}
+    />
+  )
 }
 
 export default TimeInput
