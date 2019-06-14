@@ -38,9 +38,7 @@ const Button = (props: Props) => {
               View source on Github
             </a>
           </p>
-          <div id="closeAbout" onClick={toggleShowInfo}>
-            X
-          </div>
+          <div id="closeAbout" onClick={toggleShowInfo} />
         </div>
       </div>
     </div>
