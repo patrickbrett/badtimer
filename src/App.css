@@ -1,6 +1,7 @@
 body {
   height: 100vh;
-  background: #fff;
+  background: url("resources/background.svg");
+  background-size: cover;
   color: #000;
 }
 
@@ -21,6 +22,9 @@ body {
   font-size: 48px;
   width: auto;
   animation: fadeIn 0.5s ease-out, shrinkIn 0.5s ease-out;
+  background: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.3)
 }
 
 #timer-setup {

@@ -1,5 +1,5 @@
-import * as React from "react";
-import {Component} from "react";
+import * as React from 'react'
+import { Component } from 'react'
 
 interface Props {}
 
@@ -8,29 +8,27 @@ interface State {
 }
 
 class TimerDone extends Component<Props, State> {
-  private flash: () => void;
+  private flash: () => void
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
-      flash: true
-    };
+      flash: true,
+    }
 
     this.componentDidMount = () => {
-      setInterval(this.flash, 500);
-    };
+      setInterval(this.flash, 500)
+    }
 
     this.flash = () => {
-      this.setState(prevState => ({ flash: !prevState.flash }));
-    };
+      this.setState(prevState => ({ flash: !prevState.flash }))
+    }
   }
 
   render() {
-    return (
-        <div id="timer-done">Timer Done</div>
-    )
+    return <div id="timer-done">Timer Done</div>
   }
 }
 
-export default TimerDone;
+export default TimerDone

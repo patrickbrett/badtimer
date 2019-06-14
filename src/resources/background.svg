@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="720px" height="480px" viewBox="0 0 720 480" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.6 (67491) - http://www.bohemiancoding.com/sketch -->
+    <title>Artboard Copy 6</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="4.94942197%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#5F30E6" offset="0%"></stop>
+            <stop stop-color="#333480" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="18.861745%" y1="12.4838465%" x2="52.1702138%" y2="66.088917%" id="linearGradient-2">
+            <stop stop-color="#62D1F0" offset="0%"></stop>
+            <stop stop-color="#108CC0" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Artboard-Copy-6" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polygon id="Path-2" fill="url(#linearGradient-1)" points="420.766045 -53.3374732 420.766045 565.820376 980.065638 480 763.092768 -32.5693834"></polygon>
+        <polygon id="Path-4" fill="url(#linearGradient-1)" points="148.214004 -33.2686554 -35.6830141 573.624596 444.057845 521.069847 307.086869 -57.3518123"></polygon>
+        <path d="M202.115499,-62.7675729 C104.186728,119.942889 62.0376059,262.328666 75.6681336,364.389761 C89.2986613,466.450855 109.613999,565.302396 136.614146,660.944385 L-44.7821828,489.225635 L-44.7821828,-47.5476164 L202.115499,-62.7675729 Z" id="Path" fill="url(#linearGradient-2)"></path>
+        <path d="M288.687095,-12.2732303 C185.16223,192.501228 185.16223,336.154137 288.687095,418.685495 C392.21196,501.216854 516.06847,542.287811 660.256624,541.898368 C533.693193,444.944165 480.411355,366.610357 500.411108,306.896943 C530.410739,217.326822 629.068518,217.326822 629.068518,146.401076 C629.068518,99.1172456 572.847627,34.6643216 460.405845,-46.9576956 L288.687095,-12.2732303 Z" id="Path-3" fill="url(#linearGradient-2)"></path>
+        <text id="bt.-copy-2" font-family="Avenir-Heavy, Avenir" font-size="40" font-weight="600" fill="#FFC3C3">
+            <tspan x="25" y="52">bt.</tspan>
+        </text>
+    </g>
+</svg>

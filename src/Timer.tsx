@@ -1,14 +1,52 @@
-import * as React from "react";
-import TimerDone from "./TimerDone";
-import {Component} from "react";
+import * as React from 'react'
+import TimerDone from './TimerDone'
+import { Command } from './types'
 
-class Timer extends Component {
-  props: any;
+const { Component } = React
+
+interface Props {
+  duration: number;
+  commandHistory: any;
+  skew: number;
+  children: any;
+}
+
+interface State {}
+
+class Timer extends Component<Props, State> {
+  interval: any = null
+
+  componentDidUpdate = (): void => {
+    const { commandHistory } = { ...this.props }
+
+    clearInterval(this.interval)
+
+    if (
+      commandHistory.length &&
+      commandHistory[commandHistory.length - 1].commandType === 'START'
+    ) {
+      this.interval = setInterval(() => this.forceUpdate(), 100)
+    }
+  }
 
   render() {
-    let { time, maxTime, skew, active }: { time: number, maxTime: number, skew: number, active: boolean } = this.props;
+    const { duration, commandHistory, skew, active, children }: any = this.props
 
-    let finished: boolean = false;
+    const currentTimestamp = new Date().getTime()
+
+    let elapsedDuration = 0
+    let sectionStart = 0
+    commandHistory.forEach((command: Command) => {
+      if (command.commandType === 'START') {
+        sectionStart = command.timestamp
+      } else if (command.commandType === 'PAUSE') {
+        elapsedDuration += command.timestamp - sectionStart
+        sectionStart = 0
+      }
+    })
+    if (sectionStart > 0) {
+      elapsedDuration += currentTimestamp - sectionStart
+    }
 
     /*
     skew to distortion
@@ -19,36 +57,37 @@ class Timer extends Component {
     distortion = 1 - skew/100 * 0.4
      */
 
-    const distortion: number = 1 - (skew / 100) * 0.4;
+    const distortion: number = 1 - (skew / 100) * 0.4
 
-    let modifiedTime: number = Math.ceil(
-      Math.pow(time / maxTime, distortion) * maxTime
-    );
+    const durationMillis = duration * 1000
 
-    if (isNaN(modifiedTime) || time < 0) {
-      modifiedTime = 0;
-      finished = true;
-    }
+    const finished = elapsedDuration >= durationMillis;
 
-    let prependZero = (num: number) => num < 10 ? "0" + String(num) : String(num);
+    const modifiedTime = Math.ceil(
+      ((durationMillis - elapsedDuration) / durationMillis) ** distortion *
+        duration
+    )
 
-    const hours: string = String(Math.floor(modifiedTime / 3600));
-    const minutes: string = prependZero(Math.floor((modifiedTime % 3600) / 60));
-    const seconds: string = prependZero(Math.floor(modifiedTime % 60));
+    const prependZero = (num: number) =>
+      num < 10 ? `0${String(num)}` : String(num)
+
+    const hours: string = String(Math.floor(modifiedTime / 3600))
+    const minutes: string = prependZero(Math.floor((modifiedTime % 3600) / 60))
+    const seconds: string = prependZero(Math.floor(modifiedTime % 60))
 
     const timeDisplay = (
       <div id="time-display">
         {hours}:{minutes}:{seconds}
       </div>
-    );
+    )
 
     return (
-      <div id="timer" className={active ? "large" : ""}>
+      <div id="timer" className={active ? 'large' : ''}>
         {finished ? <TimerDone /> : timeDisplay}
-        {this.props.children}
+        {children}
       </div>
-    );
+    )
   }
 }
 
-export default Timer;
+export default Timer

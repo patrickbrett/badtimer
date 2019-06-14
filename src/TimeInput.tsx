@@ -1,26 +1,26 @@
-import * as React from "react";
-import { Component } from "react";
+import * as React from 'react'
+import { Component } from 'react'
 
-type field = "hours" | "minutes" | "seconds";
+type field = 'hours' | 'minutes' | 'seconds'
 
 interface Props {
-  name: field,
-  checkSubmit: (e) => void,
-  updateField: (e, field: field) => void,
+  name: field
+  checkSubmit: (e) => void
+  updateField: (e, field: field) => void
   setup: Setup
 }
 
 interface State {}
 
 interface Setup {
-  hours: string,
-  minutes: string,
+  hours: string
+  minutes: string
   seconds: string
 }
 
 class TimeInput extends Component<Props, State> {
   render() {
-    const { name, checkSubmit, updateField, setup } = this.props;
+    const { name, checkSubmit, updateField, setup } = this.props
 
     return (
       <input
@@ -30,8 +30,8 @@ class TimeInput extends Component<Props, State> {
         onKeyPress={checkSubmit}
         value={setup[name]}
       />
-    );
+    )
   }
 }
 
-export default TimeInput;
+export default TimeInput
